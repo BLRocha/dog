@@ -1,35 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useForm from '../../Hooks/useForm';
+import Button from '../Forms/Button';
+import Input from '../Forms/Input';
+
 
 const LoginForm = () => {
-    const [ formBody, setFormBody ] = React.useState({
-        username: '', password: ''
-    });
+    const username = useForm();
+    const userlogin = useForm();
 
-    const changeInputs = (target) => {
-        setFormBody({...formBody, [target.id]: target.value})
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(formBody)
-        fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formBody),
-            mode: 'cors'
-        }).then( res => res.json()).then( json => console.log(json))
-        .catch(err => console.log(err))
-    }
     return (<section>
         <h1>Login</h1>
-        <form action="" onChange={({ target }) => changeInputs(target) } onSubmit={handleSubmit}>
-            <input id="username" type="text" defaultValue={formBody.name} />
-            <input id="password" type="password" defaultValue={formBody.password}/>
-            <input type='submit' name='sub' />
+        <form action="">
+            <Input id="username" label='Usuário' type="text" {...username} />
+            <Input id="password" label="Senha" type="password" {...userlogin}/>
+            <Button>Entrar</Button>
         </form>
         <Link to='/login/criar'>Cadastro</Link>
     </section>)
