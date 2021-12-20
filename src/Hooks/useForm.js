@@ -20,15 +20,15 @@ const useForm = (type) => {
             setError(types[type].message);
             return false;
         } else {
-            setError(null)
-            return true
+            setError(null);
+            return true;
         }
     }
 
     function onChange({target}) {
         setValue(target.value);
         if (error) {
-            validate(target.value)
+            validate(target.value);
         }
     }
     return {
