@@ -34,3 +34,22 @@
     position: relative;
     top: -1px;
 }
+
+
+.logout {
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.logout::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 17px;
+    background: url('../Assets/sair.svg') no-repeat center center;
+    margin-left: .5rem;
+    margin-right: .5em;
+    position: relative;
+    top: -1px;
+}
