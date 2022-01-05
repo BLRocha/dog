@@ -18,9 +18,8 @@ export const UserStorage = ({ children }) => {
             setLoading(false);
             setLogin(false);
             window.localStorage.removeItem('token');
-            navigate('/login');
     },
-    [navigate]);
+    []);
 
     async function getUser(token) {
         const {url, options} = USER_GET(token);
@@ -32,8 +31,8 @@ export const UserStorage = ({ children }) => {
             setLogin(true);
         } catch(err) {
             setError(err.message);
-            setData(null)
-            setLogin(false)
+            setData(null);
+            setLogin(false);
         } finally {
 
         }
@@ -49,7 +48,7 @@ export const UserStorage = ({ children }) => {
             const { token } = await tokenResponse.json();
             window.localStorage.setItem('token', token);
             await getUser(token);
-            navigate('/conta')
+            navigate('/conta');
         } catch(err) {
             setError(err.message);
             setLogin(false);
@@ -63,7 +62,6 @@ export const UserStorage = ({ children }) => {
             const token = window.localStorage.getItem('token');
             if (token) {
                 try {
-                
                     setError(null);
                     setLoading(true);
                     const {url, options} = TOKEN_VALIDATE_POST(token);
